@@ -1,0 +1,107 @@
+<html>
+	<head>
+		<title>The Nick Quagliara soundboard.</title>
+		<style type="text/css">
+			body, button
+			{
+				font-family: Helvetica, Arial;
+				font-weight: bold;
+			}
+			h1
+			{
+				font-size: 80px;
+				letter-spacing: -3px;
+				margin: 0 0 5px 0;
+				padding: 0;
+			}
+			button
+			{
+				display: block;
+				float: left;
+				font-size: 23px;
+				height: 136px;
+				width: 163px;
+				margin: 0 12px 12px 0;
+				cursor: pointer;
+				background-color: #fff;
+				border: solid 3px #000;
+				text-transform: uppercase;
+			}
+			button:hover
+			{
+				background-color: #F15F26;
+				color: #fff; 
+			}
+		</style>
+	</head>
+	<body>
+		<div style="width: 1150px; margin: 0 auto">
+			<h1>
+				The Nick Quagliara soundboard.
+			</h1>
+			<img src="nick.jpg" style="display: block; float: left; height: 576px; width: 432px; border: solid 2px black" />
+			<div style="float: left; margin-left: 10px">
+				<button data-file="yeah" type="button">Yeah</button>
+				<button data-file="no" type="button">No</button>
+				<button data-file="i_dont_know" type="button">I don't know</button>
+				<button data-file="i_guess" type="button">I guess</button>
+				<div style="clear: both"></div>
+				<button data-file="bullshit" type="button">Bullshit</button>
+				<button data-file="fucking_bullshit" type="button">Fucking bullshit</button>
+				<button data-file="fuck_it" type="button">Fuck it</button>
+				<button data-file="cigarette" type="button">Cigarette</button>
+				<div style="clear: both"></div>
+				<button data-file="greatest_day" type="button">Greatest day</button>
+				<button data-file="worst_day" type="button">Worst day</button>
+				<button data-file="hate" type="button">Hate in my heart</button>
+				<button data-file="hitting_with_hate" type="button">Hitting without hate</button>
+				<div style="clear: both"></div>
+				<button data-file="man_babies" type="button">Man-babies</button>
+				<button data-file="punch_a_hole" type="button">Punch a hole</button>
+				<button data-file="throw_up" type="button">Throw up</button>
+				<button data-file="burrito" type="button">Burrito throw up</button>
+				<div style="clear: both"></div>
+			</div>
+			<div style="clear: both"></div>
+		</div>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+		<script>
+			$(function () {
+				"use strict";
+				
+				var audioObjs = {};
+				
+				if (window.Audio) {
+					$("button").each(function () {
+						var audioExtension,
+							audioObj,
+							canPlayMP3,
+							canPlayWav,
+							file,
+							$button = $(this);
+					
+						file = $button.data("file");
+					
+						audioObj = new window.Audio();
+						audioObj.innerHTML =
+							'<source src="' + file + '.mp3" />' +
+							'<source src="' + file + '.wav" />';
+						
+						audioObjs[file] = audioObj;
+					});
+					
+					$("button").click(function () {
+						var audioObj,
+							$button = $(this);
+					
+						audioObj = audioObjs[$button.data("file")];
+	
+						if (audioObj) {
+							audioObj.play();
+						}
+					});
+				}
+			});
+		</script>
+	</body>
+</html>
