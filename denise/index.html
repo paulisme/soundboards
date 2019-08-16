@@ -1,0 +1,103 @@
+<html>
+	<head>
+		<title>The Denise Pe&ntilde;a Soundboard!</title>
+		<style type="text/css">
+			body, button
+			{
+				font-family: 'Comic Sans MS', Arial;
+				font-weight: bold;
+				color: orangered;
+			}
+			h1
+			{
+				font-size: 80px;
+				letter-spacing: -3px;
+				margin: 0 0 5px 0;
+				padding: 0;
+			}
+			button
+			{
+				display: block;
+				float: left;
+				font-size: 20px;
+				height: 136px;
+				width: 180px;
+				margin: 0 12px 12px 0;
+				cursor: pointer;
+				background-color: lightyellow;
+				border: solid 3px pink;
+				text-transform: uppercase;
+			}
+			button:hover
+			{
+				background-color: #F15F26;
+				color: #fff; 
+			}
+		</style>
+	</head>
+	<body>
+		<div style="width: 1150px; margin: 0 auto">
+			<h1>
+				The Denise Pe&ntilde;a Soundboard!
+			</h1>
+			<img src="denise.png" style="display: block; float: left; width: 294px; border: solid 2px pink" />
+			<div style="float: left; margin-left: 10px">
+				<button data-file="action_alerts" type="button">Action alerts?</button>
+				<button data-file="beta" type="button">Beta!</button>
+				<button data-file="crunched_for_time" type="button">Crunched for time?</button>
+				<button data-file="dashboards" type="button">Dashboards</button>
+				<div style="clear: both"></div>
+				<button data-file="easy" type="button">Easy!</button>
+				<button data-file="excited" type="button">Excited yet?</button>
+				<button data-file="hand" type="button">Need a hand?</button>
+				<button data-file="latest" type="button">Latest and greatest</button>
+				<div style="clear: both"></div>
+				<button data-file="no_problem" type="button">No problem!</button>
+				<button data-file="specifics" type="button">Specifics?</button>
+				<button data-file="sweet" type="button">Sweet</button>
+				<button data-file="thanks" type="button">Thanks for watching!</button>
+				<div style="clear: both"></div>
+			</div>
+			<div style="clear: both"></div>
+		</div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+		<script>
+			$(function () {
+				"use strict";
+				
+				var audioObjs = {};
+				
+				if (window.Audio) {
+					$("button").each(function () {
+						var audioExtension,
+							audioObj,
+							canPlayMP3,
+							canPlayWav,
+							file,
+							$button = $(this);
+					
+						file = $button.data("file");
+					
+						audioObj = new window.Audio();
+						audioObj.innerHTML =
+							'<source src="' + file + '.mp3" />' +
+							'<source src="' + file + '.wav" />';
+						
+						audioObjs[file] = audioObj;
+					});
+					
+					$("button").click(function () {
+						var audioObj,
+							$button = $(this);
+					
+						audioObj = audioObjs[$button.data("file")];
+	
+						if (audioObj) {
+							audioObj.play();
+						}
+					});
+				}
+			});
+		</script>
+	</body>
+</html>
