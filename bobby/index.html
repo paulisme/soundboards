@@ -1,0 +1,175 @@
+<html>
+	<head>
+		<title>The Bobby Earl Soundboard</title>
+		<style type="text/css">
+			body, button
+			{
+				font-family: 'Comic Sans MS', Arial;
+				font-weight: bold;
+				color: red;
+			}
+			h1
+			{
+				font-size: 80px;
+				text-align: center;
+				letter-spacing: -3px;
+				margin: 0 0 5px 0;
+				padding: 0;
+			}
+			button
+			{
+				flex: 1 1 200px; 
+				min-width: 150px;
+				display: block;
+				font-size: 20px;
+				height: 136px;
+				margin: 0 12px 12px 0;
+				cursor: pointer;
+				background-color: lightgray;
+				border: solid 3px darkblue;
+				text-transform: uppercase;
+			}
+			button:hover
+			{
+				background-color: red;
+				color: #fff; 
+			}
+
+			.meow-btn {
+				font-size: 70px;
+			}
+
+			.container {
+				display: flex;
+			}
+
+			.image {
+				margin-right: 10px;
+				margin-bottom: 10px;
+				text-align: center;
+			}
+
+			.buttons {
+				display: flex;
+				flex-wrap: wrap;
+				width: 100%;
+			}
+
+			.image img {
+				border: solid 2px darkblue;
+				width: 294px; 
+				height: auto;
+			}
+
+			@media (max-width: 768px) {
+			}
+
+			@media (max-width: 1200px) {
+			}
+
+			@media (max-width: 992px) {
+				h1 {
+					font-size: 50px;
+				}
+
+				.container {
+					display: block;
+				}
+
+				.image img {
+					width: 100%;
+					max-width: 400px;
+					margin: 0 auto 10px auto;
+				}
+			}
+
+			@media (max-width: 768px) {
+			}
+
+			@media (max-width: 576px) {
+			}
+		</style>
+	</head>
+	<body>
+		<div style="max-width: 1150px; margin: 0 auto">
+			<h1>
+				The Bobby Earl Soundboard
+			</h1>
+			<div class="container">
+				<div class="image">
+					<img src="bobby.jpg" />
+				</div>
+				<div class="buttons">
+					<button data-file="agility" type="button">Agility</button>
+					<button data-file="believe_me" type="button">Believe me</button>
+					<button data-file="bogo" type="button">BOGO</button>
+					<button data-file="click_click" type="button">Click click</button>
+					<button data-file="get_on_out" type="button">Get on out</button>
+					<button data-file="guarantee" type="button">Guarantee</button>
+					<button data-file="gyatt_almighty" type="button">Gyatt almighty!</button>
+					<button data-file="holy_shit" type="button">Holy shit</button>
+					<button data-file="hooo" type="button">Hooo!</button>
+					<button data-file="im_bobby" type="button">I'm Bobby!</button>
+					<button data-file="johns_here" type="button">John's here!</button>
+					<button data-file="look_at_that" type="button">Look at that</button>
+					<button data-file="meow" class="meow-btn" type="button">🐈</button>
+					<button data-file="oh_no" type="button">Oh no</button>
+					<button data-file="ok" type="button">OK</button>
+					<button data-file="peanut_butter" type="button">Peanut butter</button>
+					<button data-file="power" type="button">Power</button>
+					<button data-file="predicament" type="button">Predicament</button>
+					<button data-file="pull_request" type="button">Pull request</button>
+					<button data-file="raw_dog" type="button">Raw dog</button>
+					<button data-file="software_is_powerful" type="button">Software is powerful</button>
+					<button data-file="sql_clusters" type="button">SQL clusters</button>
+					<button data-file="squiggly_scoots" type="button">~~~~~~</button>
+					<button data-file="tell_you_something" type="button">Tell you something</button>
+					<button data-file="thats_right" type="button">That's right</button>
+					<button data-file="this_and_that" type="button">This and that</button>
+					<button data-file="whoo" type="button">Whoo!</button>
+					<button data-file="you_know" type="button">You know</button>
+				</div>	
+			</div>
+			
+		</div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+		<script>
+			$(function () {
+				"use strict";
+				
+				var audioObjs = {};
+				
+				if (window.Audio) {
+					$("button").each(function () {
+						var audioExtension,
+							audioObj,
+							canPlayMP3,
+							canPlayWav,
+							file,
+							$button = $(this);
+					
+						file = $button.data("file");
+					
+						audioObj = new window.Audio();
+						audioObj.innerHTML =
+							'<source src="' + file + '.mp3" />' +
+							'<source src="' + file + '.wav" />';
+						
+						audioObjs[file] = audioObj;
+					});
+					
+					$("button").click(function () {
+						var audioObj,
+							$button = $(this);
+					
+						audioObj = audioObjs[$button.data("file")];
+	
+						if (audioObj) {
+							audioObj.play();
+						}
+					});
+				}
+			});
+		</script>
+	</body>
+</html>
